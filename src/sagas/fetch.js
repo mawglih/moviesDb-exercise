@@ -19,7 +19,7 @@ export function* fetchMoviesSaga() {
     const response = yield call(fetchMovies);
     yield put({
       type: FETCH_MOVIES_SUCCESS,
-      payload: response.data,
+      payload: response.data.results,
     })
   } catch(error){
     yield put({

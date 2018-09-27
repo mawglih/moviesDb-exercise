@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  { connect } from 'react-redux';
 import {
   searchMoviesStart,
+  searchMoviesInit,
 } from 'actions';
 
 class Search extends Component {
@@ -20,15 +21,12 @@ class Search extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.searchMoviesStart(this.state.term);
+    this.props.searchMoviesInit();
     this.setState({
       term: '',
     });
   }
   render() {
-    // const {
-    //   term,
-    // } = this.state;
-    // console.log('term is: ', term);
     return (
       <form
         onSubmit={this.onFormSubmit}
@@ -41,10 +39,10 @@ class Search extends Component {
         <button
           type="submit"
         >
-          Submit
+          {'Submit'}
         </button>
       </form>
     );
   }
 }
-export default connect(null, { searchMoviesStart })(Search);
+export default connect(null, { searchMoviesStart, searchMoviesInit })(Search);

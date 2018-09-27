@@ -9,7 +9,10 @@ import createSagaMiddleware from 'redux-saga'
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import { watchFetch } from 'sagas';
+import {
+  watchFetch,
+  // watchSearch,
+} from 'sagas';
 
 const logger = store => {
   return next => {
@@ -30,6 +33,7 @@ const store = createStore(reducer,
   )
 );
 sagaMiddleware.run(watchFetch);
+// sagaMiddleware.run(watchSearch);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -5,6 +5,7 @@ import {
   SEARCH_MOVIES_START,
   SEARCH_MOVIES_SUCCESS,
   SEARCH_MOVIES_FAILURE,
+  SEARCH_MOVIES_INIT,
 } from 'actionTypes';
 
 export const fetchMoviesStart = () => (
@@ -28,8 +29,9 @@ export const fetchMoviesFailure = () => (
 
 export const searchMoviesStart = (term) => (
   {
+    state: {},
     type: SEARCH_MOVIES_START,
-    payload: term
+    payload: term,
   }
 );
 
@@ -43,5 +45,11 @@ export const searchMoviesSuccess = ({ search }) => (
 export const searchMoviesFailure = () => (
   {
       type: SEARCH_MOVIES_FAILURE,
+  }
+);
+
+export const searchMoviesInit = () => (
+  {
+    type: SEARCH_MOVIES_INIT,
   }
 );
