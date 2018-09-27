@@ -1,15 +1,31 @@
-import { instance } from 'api';
-import { put } from 'redux-saga/effects';
-import * as actions from 'actions';
+import axios from 'axios';
+import {
+  URL,
+} from 'api';
+import { put, call } from 'redux-saga/effects';
+import {
+  FETCH_MOVIES_SUCCESS,
+  FETCH_MOVIES_FAILURE,
+} from 'actionTypes';
+const fetchMovies = () => (
+  axios({
+    method: 'get',
+    url: URL
+  })
+)
 
-export function* fetchProductsSaga(action) {
+export function* fetchMoviesSaga() {
   try {
-    const response = yield instance.get(
-      'http://localhost:3001/get-items'
-    );
-    console.log('responce from server: ', response);
-    yield put(actions.fetchProducts(response.data))
+    const response = yield call(fetchMovies);
+    yield put({
+      type: FETCH_MOVIES_SUCCESS,
+      payload: response.data,
+    })
   } catch(error){
-    yield put(actions.fetchProductsFailure());
+    yield put({
+      type: FETCH_MOVIES_FAILURE,
+    });
   }
 };
+
+export default fetchMoviesSaga();

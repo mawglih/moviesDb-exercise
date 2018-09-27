@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import Products from './products';
+import movies from './movies';
+import search from './search';
 
 
 export default combineReducers({
-    Products,
+    movies,
+    search,
 });
 

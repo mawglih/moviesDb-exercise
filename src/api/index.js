@@ -1,16 +1,5 @@
-import axios from 'axios';
+const API_MOVIE = '5bb7a72a3185435136178e1839494fa4'
+const BASE_URL = 'https://api.themoviedb.org/3/discover/movie?'
+export const URL = `${BASE_URL}api_key=${API_MOVIE}`
 
-// export const fetchProducts =  () => {
-//   return axios.get('http://localhost:3001/get-items')
-//     .then(response => {
-//       console.log("products api", response.data);
-//       return response.data;
-//   })
-//   .catch(err => {
-//   console.log(err);
-// });
-// };
-
-export const instance = axios.create({
-  basuURL: 'http://localhost:3001'
-});
+export default {};

@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchProductsInit,
+  fetchMoviesStart,
+  // searchMoviesStart,
 } from 'actions';
+import Search from 'containers/Search';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.fetchProductsInit()
+    fetchMoviesStart()
   }
 
   render() {
+    const {
+      movies,
+    } = this.props;
+    console.log('Home movies: ', movies);
     return(
       <div>
-        Home
+        <Search />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = {
-  fetchProductsInit,
-}
+const mapStateToProps = state => (
+ {
+    movies: state.movies,
+  }
+);
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, { fetchMoviesStart })(Home);

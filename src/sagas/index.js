@@ -1,9 +1,10 @@
-import { takeEvery } from 'redux-saga/effects';
-import { fetchProductsSaga } from './fetch';
-import {
-  FETCH_PRODUCTS_START,
-} from '../actionTypes';
+import { all, takeEvery } from 'redux-saga/effects';
+import fetchMoviesSaga from './fetch';
+import searchMoviesSaga from './searchMovie';
 
 export function* watchFetch() {
-  yield takeEvery(FETCH_PRODUCTS_START, fetchProductsSaga);
+  yield all([
+    fetchMoviesSaga,
+    searchMoviesSaga,
+  ]);
 }
