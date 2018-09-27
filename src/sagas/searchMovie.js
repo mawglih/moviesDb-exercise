@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  URL,
+  SEARCH_MOVIE_URL,
 } from 'api';
 import { put, take, call } from 'redux-saga/effects';
 
@@ -10,18 +10,12 @@ import {
   SEARCH_MOVIES_START,
 } from 'actionTypes';
 
-// const searchMovies = (search) => (
-//   axios({
-//     method: 'get',
-//     url: `${URL}&query=${search}`
-//   })
-// )
 
 export function* searchMoviesSaga() {
   try {
     const TERM  = yield take(SEARCH_MOVIES_START);
     yield console.log('TERM: ', TERM.payload);
-    const response = yield axios.get(`${URL}&query=${TERM.payload}`);
+    const response = yield axios.get(`${SEARCH_MOVIE_URL}&query=${TERM.payload}`);
     yield put({
       type: SEARCH_MOVIES_SUCCESS,
       payload: response.data,
