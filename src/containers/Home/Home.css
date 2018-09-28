@@ -8,3 +8,19 @@
 .movieList {
   padding: 0 100px;
 }
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.paginationItem {
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin-right: 2px;
+  cursor: pointer;
+}

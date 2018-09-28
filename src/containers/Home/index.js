@@ -8,6 +8,19 @@ import MovieList from 'components/MovieList';
 import './Home.css';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: 1,
+      itemsPerPage: 6,
+    };
+  }
+  handleClick(number) {
+    console.log('page value: ', number);
+    this.setState({
+      currentPage: Number(number)
+    });
+  }
   componentDidMount() {
     fetchMoviesStart()
   }
@@ -16,7 +29,30 @@ class Home extends Component {
     const {
       movies,
     } = this.props;
+    const {
+      currentPage,
+      itemsPerPage,
+    } = this.state;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = Object.values(movies).slice(indexOfFirstItem, indexOfLastItem);
+    //
+    const pageNumbers = Array.from(new Array(4),(val,index)=>index+1);
+    console.log("Total page Numbers: ", pageNumbers.length);
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <div
+          key={number}
+          id={number}
+          onClick={this.handleClick.bind(this, number)}
+          className="paginationItem"
+        >
+          {number}
+        </div>
+      );
+    });
     console.log('Home movies: ', movies);
+    console.log('Current page: ', currentPage);
     return(
       <div className="main">
         <div className="search">
@@ -24,8 +60,11 @@ class Home extends Component {
         </div>
         <div className="movieList">
           <MovieList
-            data={movies}
+            data={currentItems}
           />
+        </div>
+        <div className="pagination">
+          {renderPageNumbers}
         </div>
       </div>
     );
@@ -38,4 +77,4 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, { fetchMoviesStart, })(Home);
+export default connect(mapStateToProps, { fetchMoviesStart })(Home);

@@ -11,7 +11,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {
   watchFetch,
-  // watchSearch,
+  watchMovieDetail,
 } from 'sagas';
 
 const logger = store => {
@@ -33,7 +33,7 @@ const store = createStore(reducer,
   )
 );
 sagaMiddleware.run(watchFetch);
-// sagaMiddleware.run(watchSearch);
+sagaMiddleware.run(watchMovieDetail);
 
 ReactDOM.render(
   <Provider store={store}>

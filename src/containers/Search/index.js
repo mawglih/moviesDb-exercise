@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import  { connect } from 'react-redux';
 import {
   searchMoviesStart,
-  searchMoviesInit,
 } from 'actions';
+import './Search.css';
 
 class Search extends Component {
   constructor(props) {
@@ -21,28 +21,38 @@ class Search extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.searchMoviesStart(this.state.term);
-    this.props.searchMoviesInit();
     this.setState({
       term: '',
     });
   }
   render() {
     return (
-      <form
-        onSubmit={this.onFormSubmit}
-      >
-        <input
-          placeholder="Type the movie name"
-          value={this.state.term}
-          onChange={this.onInputChange}
-        />
-        <button
-          type="submit"
+      <div className="searchForm">
+        <form
+          onSubmit={this.onFormSubmit}
         >
-          {'Submit'}
-        </button>
-      </form>
+        <h2>
+          {'MovieDB'}
+        </h2>
+        <h4>
+          {'Search for a movie below.'}
+        </h4>
+        <input
+            placeholder="Movie title"
+            value={this.state.term}
+            onChange={this.onInputChange}
+            className="inputSubmit"
+          />
+          <button
+            type="submit"
+            className="buttonSubmit"
+          >
+            {'Submit'}
+          </button>
+        </form>
+      </div>
+      
     );
   }
 }
-export default connect(null, { searchMoviesStart, searchMoviesInit })(Search);
+export default connect(null, { searchMoviesStart })(Search);

@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieTile from 'components/MovieTile';
+import MovieTile from 'containers/MovieTile';
 import './MovieList.css';
 
 const MovieList = ({
@@ -7,7 +7,7 @@ const MovieList = ({
 }) => (
   <div className="movies">
     {data ?
-      Object.values(data).map(item => (
+      data.map(item => (
         <div
           className="tile"
           key={encodeURIComponent(item.id)}
@@ -16,6 +16,7 @@ const MovieList = ({
             title={item.title}
             date={item.release_date}
             overview={item.overview}
+            id={item.id}
           />
         </div>
       )) : null

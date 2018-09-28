@@ -1,0 +1,16 @@
+.movieSingle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.overview {
+  width: 40%;
+}
+.movieSingle  p {
+  overflow: hidden;
+  text-align: center;
+}
+.movieSingle img {
+  height: 400px;
+}

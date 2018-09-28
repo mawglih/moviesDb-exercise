@@ -1,19 +1,23 @@
-import { all, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest, takeEvery } from 'redux-saga/effects';
 import fetchMoviesSaga from './fetch';
 import searchMoviesSaga from './searchMovie';
-// import {
-//   SEARCH_MOVIES_INIT,
-// } from 'actionTypes';
+import getMovieSaga from './movieDetail';
+import {
+  SEARCH_MOVIES_START,
+  FETCH_MOVIES_START,
+  GET_MOVIE_START,
+} from 'actionTypes';
+import {  } from '../actionTypes';
 
 export function* watchFetch() {
-  yield all([
+  yield all({
     fetchMoviesSaga,
     searchMoviesSaga,
-  ]);
+})
 }
 
-// export function* watchSearch() {
-//   yield takeLatest(SEARCH_MOVIES_INIT, searchMoviesSaga);
-// }
+export function* watchMovieDetail() {
+  yield takeEvery(GET_MOVIE_START, getMovieSaga);
+}
 
 export default {};
